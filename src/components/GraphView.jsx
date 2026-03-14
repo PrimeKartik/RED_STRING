@@ -49,6 +49,12 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
         linkDirectionalParticles={2}
         linkDirectionalParticleSpeed={d => d.amount * 0.001}
         onNodeClick={handleNodeClick}
+        nodePointerAreaPaint={(node, color, ctx) => {
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.val, 0, 2 * Math.PI, false);
+          ctx.fill();
+        }}
         nodeCanvasObject={(node, ctx, globalScale) => {
           const label = node.name;
           const fontSize = 12/globalScale;
